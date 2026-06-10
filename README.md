@@ -1,16 +1,17 @@
 # Central Automatizada de Alarmas
 
-Página web profesional para Central Automatizada de Alarmas, empresa de seguridad ubicada en Cuauhtémoc, Chihuahua.
+Landing page para Central Automatizada de Alarmas, empresa de seguridad y monitoreo 24/7 en Cuauhtémoc, Chihuahua. Operando desde julio de 2010.
 
 ---
 
 ## Información del Negocio
 
 - **Nombre:** Central Automatizada de Alarmas
-- **Giro:** Empresa de Seguridad (Home Security Company)
-- **Teléfono:** +52 625 581 3313
+- **Giro:** Seguridad — monitoreo de alarmas, CCTV, control de acceso, cercas eléctricas, automatización
+- **Teléfono / WhatsApp:** +52 625 581 3313
 - **Email:** centralautomatizada@gmail.com
-- **Dirección:** Morelos #3325, Cuauhtémoc, Chihuahua 31530
+- **Dirección:** Morelos #3325, Col. Francisco Villa, Cuauhtémoc, Chihuahua 31530
+- **Facebook:** https://www.facebook.com/p/Central-Automatizada-de-Alarmas-100063617767956/
 
 ---
 
@@ -18,39 +19,45 @@ Página web profesional para Central Automatizada de Alarmas, empresa de segurid
 
 ```
 Central/
-├── index.html   — Página principal
+├── index.html   — Página principal (una sola página)
 ├── styles.css   — Estilos
-├── script.js    — Interactividad
-└── README.md    — Documentación
+├── script.js    — Menú móvil, reveals, contadores, panel de monitoreo en vivo
+├── logo_final.png
+└── README.md
 ```
 
 ---
 
 ## Secciones
 
-1. **Hero** — Propuesta de valor con llamada a la acción
-2. **Servicios** — Monitoreo, CCTV, Control de Acceso, Cercas, Alarmas, Automatización
-3. **Por qué elegirnos** — Diferenciadores y estadísticas
-4. **Nosotros** — Descripción de la empresa
-5. **Contacto** — Teléfono, email y dirección
+1. **Hero** — Titular grande + panel de monitoreo "en vivo" (radar animado, feed de eventos, reloj)
+2. **Ticker** — Banda diagonal animada con los servicios
+3. **Servicios** — 6 tarjetas numeradas con copy breve
+4. **Cómo funciona** — Detección → Verificación → Respuesta
+5. **Nosotros** — Diferenciador local + estadísticas con contadores animados
+6. **Contacto** — Teléfono gigante, WhatsApp, dirección con link a Maps
+7. **Footer** + botón flotante de WhatsApp
 
 ---
 
-## Paleta de Colores
+## Identidad Visual
 
-- Primario: #3B82F6 (azul)
-- Fondo oscuro: #0F172A
-- Acento: #0EA5E9 (cyan)
+Derivada del logo (escudo rojo con rayo amarillo):
+
+- Rojo primario: `#E31C25`
+- Amarillo acento: `#FACC15`
+- Fondo: `#0a0a0c` (tema oscuro tipo "centro de comando")
+- Tipografías: Big Shoulders (display), Archivo (cuerpo), JetBrains Mono (etiquetas técnicas)
 
 ---
 
 ## Despliegue
 
-Compatible con cualquier hosting estático:
-- GitHub Pages
-- Netlify
-- Vercel
+Sitio estático sin build. Compatible con GitHub Pages (workflow en `.github/workflows/`), Netlify o Vercel.
 
----
+Para verlo localmente:
 
-2025 Central Automatizada de Alarmas
+```bash
+python3 -m http.server 8000
+# http://localhost:8000
+```

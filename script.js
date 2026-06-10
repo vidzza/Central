@@ -1,114 +1,121 @@
 /**
- * CENTRAL AUTOMATIZADA DE ALARMAS - JavaScript
+ * CENTRAL AUTOMATIZADA DE ALARMAS
  */
 
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // Header scroll effect
-    const header = document.getElementById('header');
-    
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
+document.addEventListener('DOMContentLoaded', () => {
 
-    // Mobile menu
+    // ── Header scroll ──
+    const header = document.getElementById('header');
+    const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 40);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // ── Menú móvil ──
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');
-    const navLinks = document.querySelectorAll('.nav-link');
 
-    if (navToggle) {
-        navToggle.addEventListener('click', () => {
-            navToggle.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
-        });
-    }
-
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            navToggle.classList.remove('active');
-            navMenu.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-    });
-
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            
-            if (target) {
-                const headerOffset = 80;
-                const elementPosition = target.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-
-    // Intersection Observer for animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+    const closeMenu = () => {
+        navToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    navToggle.addEventListener('click', () => {
+        const open = navMenu.classList.toggle('active');
+        navToggle.classList.toggle('active', open);
+        navToggle.setAttribute('aria-expanded', String(open));
+        document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768 && navMenu.classList.contains('active')) closeMenu();
+    });
+
+    // ── Reveal on scroll ──
+    const revealObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
+                entry.target.classList.add('in');
+                revealObserver.unobserve(entry.target);
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
-    // Observe elements
-    document.querySelectorAll('.service-card, .stat-card, .contact-card, .why-feature').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-        observer.observe(el);
-    });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // Add visible class styles
-    const style = document.createElement('style');
-    style.textContent = `
-        .visible {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-        }
-    `;
-    document.head.appendChild(style);
+    // ── Contadores animados ──
+    const animateCount = el => {
+        const target = parseInt(el.dataset.count, 10);
+        const duration = 1400;
+        const start = performance.now();
 
-    // Stagger animations for grids
-    const staggerElements = (selector, delay = 100) => {
-        const elements = document.querySelectorAll(selector);
-        elements.forEach((el, index) => {
-            el.style.transitionDelay = `${index * delay}ms`;
-        });
+        const tick = now => {
+            const p = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - p, 3);
+            el.textContent = Math.round(target * eased);
+            if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
     };
 
-    staggerElements('.service-card', 100);
-    staggerElements('.contact-card', 150);
-    staggerElements('.why-feature', 100);
+    const countObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCount(entry.target);
+                countObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.6 });
 
-    // Console branding
-    console.log(
-        '%c CENTRAL %c Automatizada de Alarmas ',
-        'background: linear-gradient(135deg, #E31C25, #B91C1C); color: white; padding: 10px 15px; font-size: 14px; font-weight: bold; border-radius: 4px 0 0 4px;',
-        'background: #0F172A; color: #E31C25; padding: 10px 15px; font-size: 14px; border-radius: 0 4px 4px 0;'
-    );
+    document.querySelectorAll('[data-count]').forEach(el => {
+        // "2010" se muestra fijo, solo animamos los que arrancan en 0
+        if (el.textContent.trim() === '0') countObserver.observe(el);
+    });
 
-});
+    // ── Reloj del panel ──
+    const clock = document.getElementById('panelClock');
+    if (clock) {
+        const tickClock = () => {
+            clock.textContent = new Date().toLocaleTimeString('es-MX', { hour12: false });
+        };
+        tickClock();
+        setInterval(tickClock, 1000);
+    }
 
-// Page loaded
-window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
+    // ── Feed de eventos en vivo ──
+    const log = document.getElementById('eventLog');
+    if (log) {
+        const events = [
+            ['PERÍMETRO NORTE', 'OK', 'ok'],
+            ['CÁMARA 04', 'GRABANDO', 'ok'],
+            ['PANEL CENTRO', 'ARMADO', 'ok'],
+            ['CERCA ELÉCTRICA', 'ACTIVA', 'ok'],
+            ['SENSOR P2', 'VERIFICADO', 'warn'],
+            ['ENLACE CELULAR', 'ESTABLE', 'ok'],
+            ['ACCESO PRINCIPAL', 'OK', 'ok'],
+            ['BATERÍA', '100%', 'ok'],
+            ['CÁMARA 02', 'GRABANDO', 'ok'],
+            ['SEÑAL GPRS', 'OK', 'ok']
+        ];
+        let idx = 0;
+
+        const pushEvent = () => {
+            const [label, status, cls] = events[idx % events.length];
+            idx++;
+
+            const time = new Date().toLocaleTimeString('es-MX', { hour12: false });
+            const line = document.createElement('div');
+            line.className = 'ev';
+            line.innerHTML = `<span class="t">${time}</span>${label} · <span class="${cls}">${status}</span>`;
+            log.appendChild(line);
+
+            while (log.children.length > 6) log.removeChild(log.firstChild);
+        };
+
+        for (let i = 0; i < 4; i++) pushEvent();
+        setInterval(pushEvent, 2600);
+    }
 });
