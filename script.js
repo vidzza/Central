@@ -34,6 +34,45 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.innerWidth > 768 && navMenu.classList.contains('active')) closeMenu();
     });
 
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ── Cascada de luz en títulos: letra por letra, de amarillo a su color ──
+    const splitChars = root => {
+        root.setAttribute('aria-label', root.textContent.trim());
+        let i = 0;
+        const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) {
+            if (walker.currentNode.nodeValue.trim()) textNodes.push(walker.currentNode);
+        }
+        textNodes.forEach(node => {
+            const frag = document.createDocumentFragment();
+            node.nodeValue.split(/(\s+)/).forEach(part => {
+                if (!part) return;
+                if (/^\s+$/.test(part)) {
+                    frag.appendChild(document.createTextNode(part));
+                    return;
+                }
+                const word = document.createElement('span');
+                word.className = 'word';
+                word.setAttribute('aria-hidden', 'true');
+                [...part].forEach(c => {
+                    const ch = document.createElement('span');
+                    ch.className = 'ch';
+                    ch.textContent = c;
+                    ch.style.setProperty('--i', i++);
+                    word.appendChild(ch);
+                });
+                frag.appendChild(word);
+            });
+            node.parentNode.replaceChild(frag, node);
+        });
+    };
+
+    if (!reduceMotion) {
+        document.querySelectorAll('.char-title').forEach(splitChars);
+    }
+
     // ── Reveal on scroll ──
     const revealObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
@@ -44,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    document.querySelectorAll('.reveal, .char-title').forEach(el => revealObserver.observe(el));
 
     // ── Contadores animados ──
     const animateCount = el => {
@@ -118,8 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < 4; i++) pushEvent();
         setInterval(pushEvent, 2600);
     }
-
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // ── Botón de llamada flotante (aparece al pasar el hero) ──
     const fab = document.querySelector('.call-fab');

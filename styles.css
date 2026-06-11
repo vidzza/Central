@@ -138,23 +138,45 @@ main > section.scanning::after {
 
 .section-head { margin-bottom: 56px; }
 
-/* Revelación enmascarada por línea (títulos) */
-.t-line {
-    display: block;
-    overflow: hidden;
-    padding-bottom: 0.12em;
-    margin-bottom: -0.12em;
+/* ═══ Cascada de luz en títulos ═══
+   Cada letra llega desenfocada y encendida en amarillo,
+   luego se enfría a su color — una ola de luz recorre el texto. */
+
+.t-line { display: block; }
+
+.char-title .word {
+    display: inline-block;
+    white-space: nowrap;
 }
 
-.t-inner {
-    display: block;
-    transform: translateY(112%);
-    transition: transform 0.9s var(--ease-out);
+.char-title .ch {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(0.42em);
+    filter: blur(8px);
+    color: var(--yellow);
+    text-shadow: 0 0 24px rgba(250, 204, 21, 0.75);
+    transition:
+        opacity 0.45s var(--ease-out),
+        transform 0.55s var(--ease-out),
+        filter 0.45s var(--ease-out),
+        color 0.7s ease,
+        text-shadow 0.7s ease;
+    transition-delay:
+        calc(var(--i) * 22ms),
+        calc(var(--i) * 22ms),
+        calc(var(--i) * 22ms),
+        calc(var(--i) * 22ms + 0.3s),
+        calc(var(--i) * 22ms + 0.3s);
 }
 
-.t-line:nth-child(2) .t-inner { transition-delay: 0.12s; }
-
-.reveal.in .t-inner { transform: none; }
+.char-title.in .ch {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+    color: inherit;
+    text-shadow: 0 0 0 rgba(250, 204, 21, 0);
+}
 
 /* ═══ Botones ═══ */
 
@@ -406,14 +428,6 @@ main > section.scanning::after {
 
 .hero-title .line { display: block; }
 
-/* Entrada con desenfoque: la señal "sintonizándose" */
-.hero-title .line.reveal {
-    filter: blur(14px);
-    transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out), filter 0.8s var(--ease-out);
-}
-
-.hero-title .line.reveal.in { filter: blur(0); }
-
 .hero-title mark {
     background: none;
     color: var(--red);
@@ -429,8 +443,12 @@ main > section.scanning::after {
     bottom: 0.04em;
     height: 0.1em;
     background: var(--yellow);
-    transform: skewX(-20deg);
+    transform: scaleX(0) skewX(-20deg);
+    transform-origin: left;
+    transition: transform 0.6s var(--ease-out) 1s;
 }
+
+.hero-title.in mark::after { transform: scaleX(1) skewX(-20deg); }
 
 .hero-sub {
     max-width: 480px;
