@@ -165,49 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('main > section').forEach(s => scanObserver.observe(s));
     }
 
-    // ── Texto "desencriptándose" en títulos ──
-    const scramble = (el, duration = 750) => {
-        const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
-        const nodes = [];
-        while (walker.nextNode()) {
-            const text = walker.currentNode.nodeValue;
-            if (text.trim()) nodes.push({ node: walker.currentNode, text });
-        }
-        const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#<>/_';
-        const start = performance.now();
-
-        const tick = now => {
-            const p = Math.min((now - start) / duration, 1);
-            nodes.forEach(({ node, text }) => {
-                const solved = Math.floor(p * text.length);
-                let out = text.slice(0, solved);
-                for (let i = solved; i < text.length; i++) {
-                    out += /\S/.test(text[i])
-                        ? charset[Math.floor(Math.random() * charset.length)]
-                        : text[i];
-                }
-                node.nodeValue = out;
-            });
-            if (p < 1) requestAnimationFrame(tick);
-            else nodes.forEach(({ node, text }) => { node.nodeValue = text; });
-        };
-        requestAnimationFrame(tick);
-    };
-
-    if (!reduceMotion) {
-        const scrambleObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    scramble(entry.target);
-                    scrambleObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        document.querySelectorAll('.hero-title, .section-title, .contact-title')
-            .forEach(el => scrambleObserver.observe(el));
-    }
-
     // ── Parallax en el hero ──
     const bolt = document.querySelector('.hero-bolt');
     const glow = document.querySelector('.hero-glow');

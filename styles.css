@@ -138,6 +138,24 @@ main > section.scanning::after {
 
 .section-head { margin-bottom: 56px; }
 
+/* Revelación enmascarada por línea (títulos) */
+.t-line {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.12em;
+    margin-bottom: -0.12em;
+}
+
+.t-inner {
+    display: block;
+    transform: translateY(112%);
+    transition: transform 0.9s var(--ease-out);
+}
+
+.t-line:nth-child(2) .t-inner { transition-delay: 0.12s; }
+
+.reveal.in .t-inner { transform: none; }
+
 /* ═══ Botones ═══ */
 
 .btn {
