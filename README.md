@@ -8,7 +8,7 @@ Landing page para Central Automatizada de Alarmas, empresa de seguridad y monito
 
 - **Nombre:** Central Automatizada de Alarmas
 - **Giro:** Seguridad — monitoreo de alarmas, CCTV, control de acceso, cercas eléctricas, automatización
-- **Teléfono / WhatsApp:** +52 625 581 3313
+- **Teléfono:** +52 625 581 3313 (sin WhatsApp — solo llamadas)
 - **Email:** centralautomatizada@gmail.com
 - **Dirección:** Morelos #3325, Col. Francisco Villa, Cuauhtémoc, Chihuahua 31530
 - **Facebook:** https://www.facebook.com/p/Central-Automatizada-de-Alarmas-100063617767956/
@@ -30,13 +30,13 @@ Central/
 
 ## Secciones
 
-1. **Hero** — Titular grande + panel de monitoreo "en vivo" (radar animado, feed de eventos, reloj)
+1. **Hero** — Titular grande + panel de monitoreo "en vivo" (zonas activas, monitor de pulso, feed de eventos, reloj)
 2. **Ticker** — Banda diagonal animada con los servicios
 3. **Servicios** — 6 tarjetas numeradas con copy breve
 4. **Cómo funciona** — Detección → Verificación → Respuesta
 5. **Nosotros** — Diferenciador local + estadísticas con contadores animados
-6. **Contacto** — Teléfono gigante, WhatsApp, dirección con link a Maps
-7. **Footer** + botón flotante de WhatsApp
+6. **Contacto** — Teléfono gigante (solo llamadas), correo y dirección con link a Maps
+7. **Footer** + botón flotante de llamada (aparece al hacer scroll)
 
 ---
 

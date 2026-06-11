@@ -118,4 +118,149 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < 4; i++) pushEvent();
         setInterval(pushEvent, 2600);
     }
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ── Botón de llamada flotante (aparece al pasar el hero) ──
+    const fab = document.querySelector('.call-fab');
+    if (fab) {
+        const toggleFab = () => {
+            fab.classList.toggle('show', window.scrollY > window.innerHeight * 0.6);
+        };
+        window.addEventListener('scroll', toggleFab, { passive: true });
+        toggleFab();
+    }
+
+    // ── Láser de progreso de scroll ──
+    const progress = document.createElement('div');
+    progress.className = 'scan-progress';
+    progress.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(progress);
+
+    let progressTicking = false;
+    const updateProgress = () => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        progress.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
+        progressTicking = false;
+    };
+    window.addEventListener('scroll', () => {
+        if (!progressTicking) {
+            progressTicking = true;
+            requestAnimationFrame(updateProgress);
+        }
+    }, { passive: true });
+    updateProgress();
+
+    // ── Barrido láser por sección ──
+    if (!reduceMotion) {
+        const scanObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('scanning');
+                    scanObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.18 });
+
+        document.querySelectorAll('main > section').forEach(s => scanObserver.observe(s));
+    }
+
+    // ── Texto "desencriptándose" en títulos ──
+    const scramble = (el, duration = 750) => {
+        const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+        const nodes = [];
+        while (walker.nextNode()) {
+            const text = walker.currentNode.nodeValue;
+            if (text.trim()) nodes.push({ node: walker.currentNode, text });
+        }
+        const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#<>/_';
+        const start = performance.now();
+
+        const tick = now => {
+            const p = Math.min((now - start) / duration, 1);
+            nodes.forEach(({ node, text }) => {
+                const solved = Math.floor(p * text.length);
+                let out = text.slice(0, solved);
+                for (let i = solved; i < text.length; i++) {
+                    out += /\S/.test(text[i])
+                        ? charset[Math.floor(Math.random() * charset.length)]
+                        : text[i];
+                }
+                node.nodeValue = out;
+            });
+            if (p < 1) requestAnimationFrame(tick);
+            else nodes.forEach(({ node, text }) => { node.nodeValue = text; });
+        };
+        requestAnimationFrame(tick);
+    };
+
+    if (!reduceMotion) {
+        const scrambleObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    scramble(entry.target);
+                    scrambleObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.hero-title, .section-title, .contact-title')
+            .forEach(el => scrambleObserver.observe(el));
+    }
+
+    // ── Parallax en el hero ──
+    const bolt = document.querySelector('.hero-bolt');
+    const glow = document.querySelector('.hero-glow');
+    if (bolt && glow && !reduceMotion) {
+        let parallaxTicking = false;
+        const updateParallax = () => {
+            const y = window.scrollY;
+            if (y < window.innerHeight * 1.2) {
+                bolt.style.transform = `rotate(12deg) translateY(${y * 0.22}px)`;
+                glow.style.transform = `translateY(${y * 0.14}px)`;
+            }
+            parallaxTicking = false;
+        };
+        window.addEventListener('scroll', () => {
+            if (!parallaxTicking) {
+                parallaxTicking = true;
+                requestAnimationFrame(updateParallax);
+            }
+        }, { passive: true });
+    }
+
+    // ── Spotlight en tarjetas de servicio (desktop) ──
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const r = card.getBoundingClientRect();
+                card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+                card.style.setProperty('--my', `${e.clientY - r.top}px`);
+            });
+        });
+    }
+
+    // ── Scrollspy en el nav ──
+    const spyLinks = [...document.querySelectorAll('.nav-link[href^="#"]')];
+    const spyTargets = spyLinks
+        .map(l => document.querySelector(l.getAttribute('href')))
+        .filter(Boolean);
+
+    // El hero limpia el resaltado (no está en el menú)
+    const heroSection = document.getElementById('inicio');
+    if (heroSection) spyTargets.push(heroSection);
+
+    if (spyTargets.length) {
+        const spyObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    spyLinks.forEach(l =>
+                        l.classList.toggle('active', l.getAttribute('href') === `#${entry.target.id}`)
+                    );
+                }
+            });
+        }, { rootMargin: '-40% 0px -55% 0px' });
+
+        spyTargets.forEach(t => spyObserver.observe(t));
+    }
 });
