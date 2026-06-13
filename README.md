@@ -19,10 +19,13 @@ Landing page para Central Automatizada de Alarmas, empresa de seguridad y monito
 
 ```
 Central/
-├── index.html   — Página principal (una sola página)
-├── styles.css   — Estilos
-├── script.js    — Menú móvil, reveals, contadores, panel de monitoreo en vivo
-├── logo_final.png
+├── index.html       — Página principal (una sola página)
+├── styles.css       — Estilos + sistema de movimiento premium
+├── script.js        — Menú, reveals, contadores, parallax de mouse, panel en vivo
+├── logo_header.png  — Logo optimizado para header/footer (38 KB)
+├── favicon.png      — Favicon / apple-touch-icon (19 KB)
+├── logo_final.png   — Original 1500px (solo og:image para redes)
+├── CNAME            — Dominio personalizado (GitHub Pages)
 └── README.md
 ```
 
@@ -46,7 +49,7 @@ Derivada del logo (escudo rojo con rayo amarillo):
 
 - Rojo primario: `#E31C25`
 - Amarillo acento: `#FACC15`
-- Fondo: `#0a0a0c` (tema oscuro tipo "centro de comando")
+- Fondo: `#08080a` (tema oscuro tipo "centro de comando")
 - Tipografías: Big Shoulders (display), Archivo (cuerpo), JetBrains Mono (etiquetas técnicas)
 
 ---

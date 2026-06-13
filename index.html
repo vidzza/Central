@@ -5,17 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Central Automatizada de Alarmas — Central de monitoreo propia en Cuauhtémoc, Chihuahua desde 2010. Alarmas, CCTV, control de acceso y cercas eléctricas con respuesta inmediata 24/7.">
     <meta name="keywords" content="alarmas Cuauhtémoc, monitoreo 24 horas, seguridad Chihuahua, CCTV, cámaras de seguridad, control de acceso, cercas eléctricas">
-    <meta name="theme-color" content="#0a0a0c">
+    <meta name="theme-color" content="#08080a">
     <title>Central Automatizada de Alarmas — Monitoreo 24/7 en Cuauhtémoc, Chihuahua</title>
+
+    <link rel="canonical" href="https://centralautomatizadadealarmas.com/">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://centralautomatizadadealarmas.com/">
+    <meta property="og:site_name" content="Central Automatizada de Alarmas">
     <meta property="og:title" content="Central Automatizada de Alarmas — Monitoreo 24/7">
     <meta property="og:description" content="Central de monitoreo propia en Cuauhtémoc desde 2010. Detectamos, verificamos y respondemos en segundos.">
-    <meta property="og:image" content="logo_final.png">
+    <meta property="og:image" content="https://centralautomatizadadealarmas.com/logo_final.png">
     <meta property="og:locale" content="es_MX">
 
-    <link rel="icon" type="image/png" href="logo_final.png">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Central Automatizada de Alarmas — Monitoreo 24/7">
+    <meta name="twitter:description" content="Central de monitoreo propia en Cuauhtémoc desde 2010. Respuesta inmediata las 24 horas.">
+    <meta name="twitter:image" content="https://centralautomatizadadealarmas.com/logo_final.png">
+
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,9 +41,13 @@
         "@context": "https://schema.org",
         "@type": "SecuritySystem",
         "name": "Central Automatizada de Alarmas",
+        "url": "https://centralautomatizadadealarmas.com/",
+        "image": "https://centralautomatizadadealarmas.com/logo_final.png",
         "telephone": "+52-625-581-3313",
         "email": "centralautomatizada@gmail.com",
-        "foundingDate": "2010-07",
+        "priceRange": "$$",
+        "areaServed": "Cuauhtémoc, Chihuahua",
+        "foundingDate": "2010",
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "Morelos #3325, Col. Francisco Villa",
@@ -53,7 +68,7 @@
     <header class="header" id="header">
         <nav class="navbar container">
             <a href="#inicio" class="logo" aria-label="Central Automatizada de Alarmas — Inicio">
-                <img src="logo_final.png" alt="Escudo de Central Automatizada de Alarmas" class="logo-img">
+                <img src="logo_header.png" alt="Escudo de Central Automatizada de Alarmas" class="logo-img" width="46" height="46">
                 <span class="logo-text">CENTRAL<em>AUTOMATIZADA</em></span>
             </a>
 
@@ -80,10 +95,20 @@
         <!-- ═══ Hero ═══ -->
         <section id="inicio" class="hero">
             <div class="hero-bg" aria-hidden="true">
-                <div class="hero-grid"></div>
-                <div class="hero-glow"></div>
-                <svg class="hero-bolt" viewBox="0 0 100 180" fill="none">
-                    <path d="M62 2 L18 96 H46 L34 178 L86 70 H54 L74 2 Z" fill="currentColor"/>
+                <div class="hero-vignette"></div>
+                <div class="hero-aurora"></div>
+                <div class="hero-grid" data-depth="0.02"></div>
+                <div class="hero-scan"></div>
+                <div class="hero-glow" data-depth="0.06"></div>
+                <svg class="hero-bolt" data-depth="0.09" viewBox="0 0 100 180" fill="none">
+                    <defs>
+                        <linearGradient id="boltCharge" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+                            <stop offset="0" stop-color="#FACC15"/>
+                            <stop offset="0.5" stop-color="#E31C25"/>
+                            <stop offset="1" stop-color="#FACC15"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M62 2 L18 96 H46 L34 178 L86 70 H54 L74 2 Z" fill="url(#boltCharge)"/>
                 </svg>
             </div>
 
@@ -102,7 +127,7 @@
 
                     <p class="hero-sub reveal d4">
                         Central de monitoreo propia en Cuauhtémoc. Detectamos, verificamos
-                        y respondemos en segundos. <strong>Desde 2010.</strong>
+                        y respondemos en segundos. <strong>15+ años protegiendo la región.</strong>
                     </p>
 
                     <div class="hero-cta reveal d5">
@@ -305,7 +330,7 @@
     <footer class="footer">
         <div class="container footer-inner">
             <a href="#inicio" class="footer-brand">
-                <img src="logo_final.png" alt="Central Automatizada de Alarmas">
+                <img src="logo_header.png" alt="Central Automatizada de Alarmas" width="34" height="34">
                 <span class="mono">CENTRAL AUTOMATIZADA DE ALARMAS</span>
             </a>
             <p class="mono">© 2026 · CUAUHTÉMOC, CHIHUAHUA · DESDE 2010</p>

@@ -1,8 +1,12 @@
 /**
  * CENTRAL AUTOMATIZADA DE ALARMAS
+ * Sistema de interacción y movimiento premium
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
     // ── Header scroll ──
     const header = document.getElementById('header');
@@ -34,9 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.innerWidth > 768 && navMenu.classList.contains('active')) closeMenu();
     });
 
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    // ── Cascada de luz en títulos: letra por letra, de amarillo a su color ──
+    // ── Revelación de títulos letra por letra ──
     const splitChars = root => {
         root.setAttribute('aria-label', root.textContent.trim());
         let i = 0;
@@ -88,13 +90,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // ── Contadores animados ──
     const animateCount = el => {
         const target = parseInt(el.dataset.count, 10);
-        const duration = 1400;
+        const duration = 1600;
         const start = performance.now();
 
         const tick = now => {
             const p = Math.min((now - start) / duration, 1);
-            const eased = 1 - Math.pow(1 - p, 3);
-            el.textContent = Math.round(target * eased);
+            const eased = 1 - Math.pow(1 - p, 4);
+            el.textContent = Math.round(target * eased).toLocaleString('es-MX');
             if (p < 1) requestAnimationFrame(tick);
         };
         requestAnimationFrame(tick);
@@ -110,7 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.6 });
 
     document.querySelectorAll('[data-count]').forEach(el => {
-        // "2010" se muestra fijo, solo animamos los que arrancan en 0
         if (el.textContent.trim() === '0') countObserver.observe(el);
     });
 
@@ -158,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(pushEvent, 2600);
     }
 
-    // ── Botón de llamada flotante (aparece al pasar el hero) ──
+    // ── Botón de llamada flotante ──
     const fab = document.querySelector('.call-fab');
     if (fab) {
         const toggleFab = () => {
@@ -168,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleFab();
     }
 
-    // ── Láser de progreso de scroll ──
+    // ── Barra de progreso de scroll ──
     const progress = document.createElement('div');
     progress.className = 'scan-progress';
     progress.setAttribute('aria-hidden', 'true');
@@ -188,43 +189,102 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
     updateProgress();
 
-    // ── Barrido láser por sección ──
-    if (!reduceMotion) {
-        const scanObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('scanning');
-                    scanObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.18 });
+    // ── Parallax del hero: mouse + scroll combinados ──
+    const hero = document.getElementById('inicio');
+    const depthLayers = [...document.querySelectorAll('.hero-bg [data-depth]')];
+    const panel = document.querySelector('.hero-panel');
 
-        document.querySelectorAll('main > section').forEach(s => scanObserver.observe(s));
-    }
+    if (hero && !reduceMotion) {
+        // Posición objetivo (mouse) y posición suavizada (lerp) para movimiento orgánico
+        let mx = 0, my = 0, cx = 0, cy = 0;
+        let scrollY = window.scrollY;
+        let rafActive = false;
+        let panelRX = 0, panelRY = 0, panelTRX = 0, panelTRY = 0;
 
-    // ── Parallax en el hero ──
-    const bolt = document.querySelector('.hero-bolt');
-    const glow = document.querySelector('.hero-glow');
-    if (bolt && glow && !reduceMotion) {
-        let parallaxTicking = false;
-        const updateParallax = () => {
-            const y = window.scrollY;
-            if (y < window.innerHeight * 1.2) {
-                bolt.style.transform = `rotate(12deg) translateY(${y * 0.22}px)`;
-                glow.style.transform = `translateY(${y * 0.14}px)`;
+        const lerp = (a, b, n) => a + (b - a) * n;
+
+        const render = () => {
+            cx = lerp(cx, mx, 0.06);
+            cy = lerp(cy, my, 0.06);
+            panelRX = lerp(panelRX, panelTRX, 0.08);
+            panelRY = lerp(panelRY, panelTRY, 0.08);
+
+            // Capas de fondo: cada una se desplaza según su profundidad
+            const inHero = scrollY < window.innerHeight * 1.2;
+            if (inHero) {
+                depthLayers.forEach(layer => {
+                    const d = parseFloat(layer.dataset.depth) || 0;
+                    const base = layer.classList.contains('hero-bolt') ? 'rotate(12deg) ' : '';
+                    const sy = scrollY * (d * 2.6);
+                    layer.style.transform = `${base}translate3d(${cx * d * 600}px, ${cy * d * 600 + sy}px, 0)`;
+                });
             }
-            parallaxTicking = false;
+
+            // Inclinación 3D del panel
+            if (panel) {
+                panel.style.transform = `perspective(1100px) rotateX(${panelRX}deg) rotateY(${panelRY}deg)`;
+            }
+
+            // Continúa mientras haya movimiento perceptible
+            if (Math.abs(cx - mx) > 0.0005 || Math.abs(cy - my) > 0.0005 ||
+                Math.abs(panelRX - panelTRX) > 0.01 || Math.abs(panelRY - panelTRY) > 0.01) {
+                requestAnimationFrame(render);
+            } else {
+                rafActive = false;
+            }
         };
-        window.addEventListener('scroll', () => {
-            if (!parallaxTicking) {
-                parallaxTicking = true;
-                requestAnimationFrame(updateParallax);
+
+        const kick = () => {
+            if (!rafActive) { rafActive = true; requestAnimationFrame(render); }
+        };
+
+        if (finePointer) {
+            window.addEventListener('mousemove', e => {
+                mx = (e.clientX / window.innerWidth) - 0.5;
+                my = (e.clientY / window.innerHeight) - 0.5;
+                kick();
+            }, { passive: true });
+
+            // Inclinación del panel según el cursor sobre él
+            if (panel) {
+                let panelReady = false;
+                panel.addEventListener('mousemove', e => {
+                    if (!panelReady) { panel.style.transition = 'none'; panelReady = true; }
+                    const r = panel.getBoundingClientRect();
+                    const px = (e.clientX - r.left) / r.width - 0.5;
+                    const py = (e.clientY - r.top) / r.height - 0.5;
+                    panelTRY = px * 9;
+                    panelTRX = -py * 9;
+                    kick();
+                });
+                panel.addEventListener('mouseleave', () => {
+                    panelTRX = 0; panelTRY = 0; kick();
+                });
             }
+        }
+
+        window.addEventListener('scroll', () => {
+            scrollY = window.scrollY;
+            if (scrollY < window.innerHeight * 1.2) kick();
         }, { passive: true });
     }
 
+    // ── Botones magnéticos (desktop) ──
+    if (finePointer && !reduceMotion) {
+        document.querySelectorAll('.btn, .nav-phone, .call-fab').forEach(btn => {
+            const strength = btn.classList.contains('call-fab') ? 0.35 : 0.25;
+            btn.addEventListener('mousemove', e => {
+                const r = btn.getBoundingClientRect();
+                const x = e.clientX - r.left - r.width / 2;
+                const y = e.clientY - r.top - r.height / 2;
+                btn.style.transform = `translate(${x * strength}px, ${y * strength}px)`;
+            });
+            btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+        });
+    }
+
     // ── Spotlight en tarjetas de servicio (desktop) ──
-    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    if (finePointer) {
         document.querySelectorAll('.service-card').forEach(card => {
             card.addEventListener('mousemove', e => {
                 const r = card.getBoundingClientRect();
@@ -240,7 +300,6 @@ document.addEventListener('DOMContentLoaded', () => {
         .map(l => document.querySelector(l.getAttribute('href')))
         .filter(Boolean);
 
-    // El hero limpia el resaltado (no está en el menú)
     const heroSection = document.getElementById('inicio');
     if (heroSection) spyTargets.push(heroSection);
 
