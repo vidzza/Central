@@ -127,45 +127,35 @@ main > section {
 
 .section-head { margin-bottom: 56px; }
 
-/* ═══ Revelación de títulos letra por letra ═══
-   Cada letra emerge desde abajo, desenfocada y encendida en amarillo,
-   luego aterriza y se enfría a su color: una ola de luz cruza el texto. */
+/* ═══ Revelado editorial de títulos ═══
+   Cada línea sube limpia desde detrás de un borde que la descubre.
+   Sin brillo ni desenfoque: el color de acento vive solo en <mark>. */
 
 .t-line { display: block; }
 
-.char-title .word {
-    display: inline-block;
-    white-space: nowrap;
+.char-title .line,
+.char-title .t-line {
+    display: block;
+    overflow: hidden;
+    /* Holgura vertical para no recortar el resplandor de <mark> */
+    padding: 0.08em 0;
+    margin: -0.08em 0;
 }
 
-.char-title .ch {
-    display: inline-block;
-    opacity: 0;
-    transform: translateY(0.5em);
-    filter: blur(10px);
-    color: var(--yellow);
-    text-shadow: 0 0 26px var(--yellow-soft);
-    transition:
-        opacity 0.5s var(--ease-soft),
-        transform 0.7s var(--ease-out),
-        filter 0.5s var(--ease-soft),
-        color 0.8s ease,
-        text-shadow 0.8s ease;
-    transition-delay:
-        calc(var(--i) * 26ms),
-        calc(var(--i) * 26ms),
-        calc(var(--i) * 26ms),
-        calc(var(--i) * 26ms + 0.32s),
-        calc(var(--i) * 26ms + 0.32s);
+.char-title .t-inner {
+    display: block;
+    transform: translateY(115%);
+    transition: transform 0.95s var(--ease-out);
+    transition-delay: calc(var(--li, 0) * 0.09s);
+    will-change: transform;
 }
 
-.char-title.in .ch {
-    opacity: 1;
-    transform: none;
-    filter: blur(0);
-    color: inherit;
-    text-shadow: 0 0 0 rgba(250, 204, 21, 0);
-}
+.char-title.in .t-inner { transform: translateY(0); }
+
+/* Una vez revelado, liberamos el recorte para que el resplandor
+   y el subrayado de <mark> se vean completos. */
+.char-title.done .line,
+.char-title.done .t-line { overflow: visible; }
 
 /* ═══ Botones ═══ */
 
@@ -536,7 +526,7 @@ main > section {
     box-shadow: 0 0 18px var(--yellow-soft);
     transform: scaleX(0) skewX(-20deg);
     transform-origin: left;
-    transition: transform 0.7s var(--ease-out) 1.1s;
+    transition: transform 0.7s var(--ease-out) 1.25s;
 }
 
 .hero-title.in mark::after { transform: scaleX(1) skewX(-20deg); }
@@ -1189,16 +1179,14 @@ main > section {
 
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    filter: blur(6px);
-    transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out), filter 0.8s var(--ease-out);
+    transform: translateY(26px);
+    transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
     will-change: transform, opacity;
 }
 
 .reveal.in {
     opacity: 1;
     transform: none;
-    filter: blur(0);
 }
 
 .reveal.d1 { transition-delay: 0.08s; }

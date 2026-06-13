@@ -38,49 +38,38 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.innerWidth > 768 && navMenu.classList.contains('active')) closeMenu();
     });
 
-    // ── Revelación de títulos letra por letra ──
-    const splitChars = root => {
+    // ── Revelado editorial de títulos: cada línea sube tras una máscara ──
+    const buildLineReveal = root => {
         root.setAttribute('aria-label', root.textContent.trim());
-        let i = 0;
-        const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
-        const textNodes = [];
-        while (walker.nextNode()) {
-            if (walker.currentNode.nodeValue.trim()) textNodes.push(walker.currentNode);
-        }
-        textNodes.forEach(node => {
-            const frag = document.createDocumentFragment();
-            node.nodeValue.split(/(\s+)/).forEach(part => {
-                if (!part) return;
-                if (/^\s+$/.test(part)) {
-                    frag.appendChild(document.createTextNode(part));
-                    return;
-                }
-                const word = document.createElement('span');
-                word.className = 'word';
-                word.setAttribute('aria-hidden', 'true');
-                [...part].forEach(c => {
-                    const ch = document.createElement('span');
-                    ch.className = 'ch';
-                    ch.textContent = c;
-                    ch.style.setProperty('--i', i++);
-                    word.appendChild(ch);
-                });
-                frag.appendChild(word);
-            });
-            node.parentNode.replaceChild(frag, node);
+        const lines = root.querySelectorAll('.line, .t-line');
+        lines.forEach((line, idx) => {
+            const inner = document.createElement('span');
+            inner.className = 't-inner';
+            inner.style.setProperty('--li', idx);
+            while (line.firstChild) inner.appendChild(line.firstChild);
+            line.appendChild(inner);
+            line.setAttribute('aria-hidden', 'true');
         });
+        root.dataset.lines = lines.length;
     };
 
     if (!reduceMotion) {
-        document.querySelectorAll('.char-title').forEach(splitChars);
+        document.querySelectorAll('.char-title').forEach(buildLineReveal);
     }
 
     // ── Reveal on scroll ──
     const revealObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('in');
-                revealObserver.unobserve(entry.target);
+                const el = entry.target;
+                el.classList.add('in');
+                // Tras la animación, liberar el recorte de los títulos
+                if (el.classList.contains('char-title')) {
+                    const lines = parseInt(el.dataset.lines, 10) || 1;
+                    const done = (lines - 1) * 90 + 950 + 120;
+                    setTimeout(() => el.classList.add('done'), done);
+                }
+                revealObserver.unobserve(el);
             }
         });
     }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
