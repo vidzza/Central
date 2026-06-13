@@ -1308,81 +1308,141 @@ main > section {
     padding: 4px 8px;
 }
 
-/* Hueco para foto real — estilo visor de cámara */
-.photo-slot {
-    position: relative;
+/* Muro de monitoreo en vivo (vectorial) */
+.cctv-wall {
     margin-top: 64px;
-    aspect-ratio: 21 / 8;
     border: 1px solid var(--line-strong);
-    background:
-        repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.02) 40px),
-        repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.02) 40px),
-        linear-gradient(135deg, var(--bg-raise), var(--bg-card));
-    display: grid;
-    place-items: center;
+    background: linear-gradient(160deg, rgba(18, 18, 24, 0.92), rgba(10, 10, 14, 0.96));
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6), 0 0 70px rgba(227, 28, 37, 0.06);
+    clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 22px 100%, 0 calc(100% - 22px));
     overflow: hidden;
 }
 
-.photo-slot::after {
+.cctv-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--line);
+}
+
+.cctv-title { font-size: 0.72rem; font-weight: 700; color: var(--text-dim); letter-spacing: 0.12em; }
+
+.cctv-status { display: inline-flex; align-items: center; gap: 8px; font-size: 0.66rem; font-weight: 700; color: var(--green); }
+.cctv-status i { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); animation: pulse-dot 1.8s infinite; }
+
+.cctv-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--line);
+}
+
+.cam {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: radial-gradient(120% 120% at 50% 25%, #16161c, #0a0a0e 80%);
+}
+
+.cam-scene { position: absolute; inset: 0; width: 100%; height: 100%; }
+.cam-scene path, .cam-scene rect, .cam-scene circle { vector-effect: non-scaling-stroke; }
+
+/* Scanlines CRT */
+.cam::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 70% 70% at 50% 50%, transparent 55%, rgba(0,0,0,0.5));
+    z-index: 2;
     pointer-events: none;
+    background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.16) 0 1px, transparent 1px 3px);
 }
 
-.ps-rec {
+/* Marco interno sutil */
+.cam::after {
+    content: "";
     position: absolute;
-    top: 16px;
-    left: 18px;
+    inset: 7px;
+    z-index: 2;
+    pointer-events: none;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Barrido horizontal de escaneo */
+.cam-scan {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent, rgba(52, 211, 153, 0.07) 48%, rgba(255, 255, 255, 0.05) 50%, rgba(52, 211, 153, 0.07) 52%, transparent);
+    transform: translateX(-100%);
+    animation: cam-sweep 5.5s ease-in-out infinite;
+}
+.cam:nth-child(2) .cam-scan { animation-delay: 1.4s; }
+.cam:nth-child(3) .cam-scan { animation-delay: 2.8s; }
+.cam:nth-child(4) .cam-scan { animation-delay: 4.2s; }
+
+@keyframes cam-sweep { 0% { transform: translateX(-100%); } 55%, 100% { transform: translateX(100%); } }
+
+.cam-rec {
+    position: absolute;
+    top: 9px; right: 11px;
+    z-index: 3;
     display: inline-flex;
     align-items: center;
-    gap: 7px;
-    font-size: 0.62rem;
+    gap: 5px;
+    font-size: 0.54rem;
     font-weight: 700;
     color: var(--red);
-    z-index: 2;
+    letter-spacing: 0.1em;
 }
+.cam-rec i { width: 6px; height: 6px; border-radius: 50%; background: var(--red); box-shadow: 0 0 6px var(--red); animation: blink 1.2s steps(2) infinite; }
 
-.ps-rec i {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--red);
-    box-shadow: 0 0 8px var(--red);
-    animation: blink 1.2s steps(2) infinite;
-}
-
-.ps-time {
+.cam-meta {
     position: absolute;
-    top: 16px; right: 18px;
-    font-size: 0.62rem;
-    color: var(--text-dim);
-    z-index: 2;
+    left: 11px; right: 11px; bottom: 9px;
+    z-index: 3;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 0.52rem;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: 0.06em;
 }
+.cam-id { color: rgba(255, 255, 255, 0.78); font-weight: 700; }
 
-.ps-corner {
+/* Caja de movimiento detectado (CAM 02) */
+.cam-motion {
     position: absolute;
-    width: 26px; height: 26px;
-    border: 2px solid var(--yellow);
-    z-index: 2;
-    opacity: 0.7;
+    z-index: 3;
+    left: 52%; top: 28%;
+    width: 30%; height: 36%;
+    border: 1.5px dashed var(--yellow);
+    animation: motion-pulse 1.5s ease-in-out infinite;
 }
-.ps-corner.tl { top: 14px; left: 14px; border-right: none; border-bottom: none; }
-.ps-corner.tr { top: 14px; right: 14px; border-left: none; border-bottom: none; }
-.ps-corner.bl { bottom: 14px; left: 14px; border-right: none; border-top: none; }
-.ps-corner.br { bottom: 14px; right: 14px; border-left: none; border-top: none; }
+.cam-motion::after {
+    content: "MOVIMIENTO";
+    position: absolute;
+    top: -13px; left: 0;
+    font-family: var(--font-mono);
+    font-size: 0.46rem;
+    font-weight: 700;
+    color: var(--yellow);
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+}
+@keyframes motion-pulse { 0%, 100% { opacity: 0.45; transform: scale(0.97); } 50% { opacity: 1; transform: scale(1.02); } }
 
-.photo-slot-label {
-    position: relative;
-    z-index: 2;
-    font-size: 0.7rem;
+.cctv-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    border-top: 1px solid var(--line);
+    font-size: 0.64rem;
     color: var(--text-dim);
-    letter-spacing: 0.22em;
-    text-align: center;
-    padding: 14px 22px;
-    border: 1px dashed var(--line-strong);
 }
-.photo-slot-label b { display:block; color: var(--text); font-weight:700; margin-bottom: 4px; letter-spacing:0.1em; }
+.cctv-ok { color: var(--green); font-weight: 700; }
 
 /* ═══ Preguntas frecuentes ═══ */
 
@@ -1477,7 +1537,6 @@ main > section {
     .about-grid { grid-template-columns: 1fr; gap: 56px; }
     .services-grid { grid-template-columns: 1fr 1fr; }
     .equip-grid { grid-template-columns: 1fr 1fr; }
-    .photo-slot { aspect-ratio: 16 / 9; }
 }
 
 @media (max-width: 768px) {

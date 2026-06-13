@@ -104,11 +104,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (el.textContent.trim() === '0') countObserver.observe(el);
     });
 
-    // ── Reloj del panel ──
+    // ── Reloj del panel + relojes del muro de cámaras ──
     const clock = document.getElementById('panelClock');
-    if (clock) {
+    const camTimes = document.querySelectorAll('.cam-time');
+    if (clock || camTimes.length) {
         const tickClock = () => {
-            clock.textContent = new Date().toLocaleTimeString('es-MX', { hour12: false });
+            const t = new Date().toLocaleTimeString('es-MX', { hour12: false });
+            if (clock) clock.textContent = t;
+            camTimes.forEach(el => { el.textContent = t; });
         };
         tickClock();
         setInterval(tickClock, 1000);
