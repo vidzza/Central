@@ -283,6 +283,56 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ── Acordeón de preguntas frecuentes ──
+    const faqItems = [...document.querySelectorAll('.faq-item')];
+    const closeFaq = item => {
+        item.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+        item.querySelector('.faq-a').style.height = '0px';
+    };
+    faqItems.forEach(item => {
+        const q = item.querySelector('.faq-q');
+        const a = item.querySelector('.faq-a');
+        const inner = item.querySelector('.faq-a-inner');
+        q.addEventListener('click', () => {
+            const isOpen = q.getAttribute('aria-expanded') === 'true';
+            faqItems.forEach(other => { if (other !== item) closeFaq(other); });
+            if (isOpen) {
+                closeFaq(item);
+            } else {
+                q.setAttribute('aria-expanded', 'true');
+                a.style.height = inner.offsetHeight + 'px';
+            }
+        });
+    });
+    window.addEventListener('resize', () => {
+        const openQ = document.querySelector('.faq-q[aria-expanded="true"]');
+        if (openQ) {
+            const a = openQ.closest('.faq-item').querySelector('.faq-a');
+            a.style.height = a.querySelector('.faq-a-inner').offsetHeight + 'px';
+        }
+    });
+
+    // ── Parallax de scroll en elementos decorativos ──
+    const pscrollEls = [...document.querySelectorAll('[data-pscroll]')];
+    if (pscrollEls.length && !reduceMotion) {
+        let pTicking = false;
+        const updatePscroll = () => {
+            const vh = window.innerHeight;
+            pscrollEls.forEach(el => {
+                const r = el.getBoundingClientRect();
+                if (r.bottom < -120 || r.top > vh + 120) return;
+                const off = (r.top + r.height / 2 - vh / 2) / vh;
+                const f = parseFloat(el.dataset.pscroll) || 0;
+                el.style.transform = `translate3d(0, ${(-off * f * 100).toFixed(2)}px, 0)`;
+            });
+            pTicking = false;
+        };
+        window.addEventListener('scroll', () => {
+            if (!pTicking) { pTicking = true; requestAnimationFrame(updatePscroll); }
+        }, { passive: true });
+        updatePscroll();
+    }
+
     // ── Scrollspy en el nav ──
     const spyLinks = [...document.querySelectorAll('.nav-link[href^="#"]')];
     const spyTargets = spyLinks

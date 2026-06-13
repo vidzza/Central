@@ -33,7 +33,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders:opsz,wght@10..72,500..800&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="styles.css?v=2">
+    <link rel="stylesheet" href="styles.css?v=4">
 
     <!-- LocalBusiness Schema -->
     <script type="application/ld+json">
@@ -60,6 +60,22 @@
         "sameAs": ["https://www.facebook.com/p/Central-Automatizada-de-Alarmas-100063617767956/"]
     }
     </script>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {"@type": "Question", "name": "¿Cuánto cuesta el monitoreo?", "acceptedAnswer": {"@type": "Answer", "text": "Depende del tamaño de tu propiedad y los equipos que necesites. La cotización es gratuita: te visitamos, evaluamos y te damos un precio claro, sin compromiso."}},
+            {"@type": "Question", "name": "¿Qué tan rápido responden ante una alarma?", "acceptedAnswer": {"@type": "Answer", "text": "Nuestra central recibe la señal en segundos. Un operador real verifica el evento de inmediato y coordina contigo y con las autoridades."}},
+            {"@type": "Question", "name": "¿Atienden fuera de Cuauhtémoc?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Damos cobertura en Cuauhtémoc y la región. Llámanos y confirmamos tu zona al momento."}},
+            {"@type": "Question", "name": "¿Necesito internet para que funcione?", "acceptedAnswer": {"@type": "Answer", "text": "No es indispensable. Nuestros sistemas usan respaldo celular para seguir reportando a la central aunque se caiga la luz o el internet."}},
+            {"@type": "Question", "name": "¿Puedo ver mis cámaras desde el celular?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Con la app ves tus cámaras en vivo y las grabaciones desde donde estés, en tiempo real."}},
+            {"@type": "Question", "name": "¿Hay contrato forzoso?", "acceptedAnswer": {"@type": "Answer", "text": "Te explicamos las opciones con transparencia, sin letras chiquitas. Contratas el servicio que realmente necesitas."}}
+        ]
+    }
+    </script>
 </head>
 <body>
     <div class="noise" aria-hidden="true"></div>
@@ -74,6 +90,7 @@
 
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#servicios" class="nav-link">Servicios</a></li>
+                <li><a href="#equipos" class="nav-link">Equipos</a></li>
                 <li><a href="#como-funciona" class="nav-link">Cómo funciona</a></li>
                 <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
                 <li><a href="#contacto" class="nav-link">Contacto</a></li>
@@ -195,36 +212,150 @@
 
                 <div class="services-grid">
                     <article class="service-card reveal">
-                        <span class="card-num mono">01</span>
+                        <div class="card-top">
+                            <span class="card-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 8 8 11 4.5-3 8-6 8-11V5l-8-3z"/><path d="M7.5 12h2.2l1.3-3 1.6 5 1-2H16.5"/></svg>
+                            </span>
+                            <span class="card-num mono">01</span>
+                        </div>
                         <h3>Monitoreo 24/7</h3>
                         <p>Nuestra central propia vigila tu propiedad los 365 días y coordina la respuesta con autoridades.</p>
                         <span class="card-tag mono">EL CORAZÓN DEL NEGOCIO</span>
                     </article>
                     <article class="service-card reveal d1">
-                        <span class="card-num mono">02</span>
+                        <div class="card-top">
+                            <span class="card-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6z"/><path d="M10 19a2 2 0 0 0 4 0"/></svg>
+                            </span>
+                            <span class="card-num mono">02</span>
+                        </div>
                         <h3>Sistemas de Alarma</h3>
                         <p>Sensores de movimiento, apertura y humo. Sirenas de alta potencia y panel táctil.</p>
                     </article>
                     <article class="service-card reveal d2">
-                        <span class="card-num mono">03</span>
+                        <div class="card-top">
+                            <span class="card-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v3"/><rect x="3" y="7" width="13" height="6" rx="2"/><circle cx="6.5" cy="10" r="1.5"/><path d="M16 8.5l4-1.5v6l-4-1.5"/></svg>
+                            </span>
+                            <span class="card-num mono">03</span>
+                        </div>
                         <h3>CCTV</h3>
                         <p>Cámaras HD y 4K con visión nocturna. Ve tu propiedad desde el celular, donde estés.</p>
                     </article>
                     <article class="service-card reveal">
-                        <span class="card-num mono">04</span>
+                        <div class="card-top">
+                            <span class="card-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11a7 7 0 0 1 14 0"/><path d="M8 12a4 4 0 0 1 8 0v2"/><path d="M12 12v5.5"/><path d="M9 15v2.2"/><path d="M15 14.2c0 1.8-.4 2.8-1 3.8"/></svg>
+                            </span>
+                            <span class="card-num mono">04</span>
+                        </div>
                         <h3>Control de Acceso</h3>
                         <p>Tú decides quién entra: biométricos, tarjeta, código o smartphone. Con historial completo.</p>
                     </article>
                     <article class="service-card reveal d1">
-                        <span class="card-num mono">05</span>
+                        <div class="card-top">
+                            <span class="card-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V9M12 21V9M19 21V9"/><path d="M5 13h14M5 17h14"/><path d="M12 2l-2.4 5H13l-2.4 4.5"/></svg>
+                            </span>
+                            <span class="card-num mono">05</span>
+                        </div>
                         <h3>Cercas Eléctricas</h3>
                         <p>Perímetro electrificado con detección de corte y sabotaje, integrado a tu alarma.</p>
                     </article>
                     <article class="service-card reveal d2">
-                        <span class="card-num mono">06</span>
+                        <div class="card-top">
+                            <span class="card-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-6 8 6"/><path d="M6 10v10h12V10"/><path d="M9.4 16.6a3.6 3.6 0 0 1 5.2 0"/><circle cx="12" cy="17.6" r="0.7" fill="currentColor" stroke="none"/></svg>
+                            </span>
+                            <span class="card-num mono">06</span>
+                        </div>
                         <h3>Automatización</h3>
                         <p>Portones, luces y clima en una sola app. Tu casa te obedece desde cualquier lugar.</p>
                     </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ Equipos / Tecnología ═══ -->
+        <section id="equipos" class="equipment">
+            <div class="container">
+                <header class="section-head reveal">
+                    <p class="kicker mono">// TECNOLOGÍA</p>
+                    <h2 class="section-title char-title"><span class="t-line">EQUIPO DE GRADO</span><span class="t-line">PROFESIONAL.</span></h2>
+                </header>
+
+                <div class="equip-grid">
+                    <article class="equip-card reveal">
+                        <div class="equip-art" data-pscroll="0.05">
+                            <svg viewBox="0 0 120 110" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <rect x="18" y="36" width="64" height="30" rx="15"/>
+                                <path d="M32 36v30M42 36v30" opacity="0.45"/>
+                                <circle cx="80" cy="51" r="13" fill="rgba(227,28,37,0.14)"/>
+                                <circle cx="80" cy="51" r="6.5" stroke="#E31C25"/>
+                                <path d="M28 66v12M21 78h14"/>
+                                <path d="M94 38c6 4 6 22 0 26" stroke="#FACC15" opacity="0.85"/>
+                                <path d="M100 32c9 7 9 31 0 38" stroke="#FACC15" opacity="0.45"/>
+                            </svg>
+                        </div>
+                        <h3>Cámaras 4K</h3>
+                        <p>Visión nocturna real, gran angular y grabación continua en disco dedicado.</p>
+                        <ul class="equip-specs mono"><li>4K UHD</li><li>IR 30M</li><li>IP66</li></ul>
+                    </article>
+
+                    <article class="equip-card reveal d1">
+                        <div class="equip-art" data-pscroll="0.05">
+                            <svg viewBox="0 0 120 110" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <rect x="30" y="14" width="60" height="82" rx="9"/>
+                                <rect x="40" y="24" width="40" height="26" rx="3" fill="rgba(250,204,21,0.12)"/>
+                                <path d="M46 33h22M46 41h14" stroke="#FACC15"/>
+                                <circle cx="46" cy="64" r="3.2"/><circle cx="60" cy="64" r="3.2"/><circle cx="74" cy="64" r="3.2"/>
+                                <circle cx="46" cy="80" r="3.2"/><circle cx="60" cy="80" r="3.2"/><circle cx="74" cy="80" r="3.2"/>
+                                <circle cx="80" cy="20" r="2.4" fill="#34D399" stroke="none"/>
+                            </svg>
+                        </div>
+                        <h3>Panel Táctil</h3>
+                        <p>Arma y desarma por zonas desde la pantalla o tu celular, con bitácora completa.</p>
+                        <ul class="equip-specs mono"><li>APP</li><li>POR ZONAS</li><li>RESPALDO</li></ul>
+                    </article>
+
+                    <article class="equip-card reveal d2">
+                        <div class="equip-art" data-pscroll="0.05">
+                            <svg viewBox="0 0 120 110" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M44 22h32a4 4 0 0 1 4 4v30a20 20 0 0 1-40 0V26a4 4 0 0 1 4-4z"/>
+                                <path d="M40 50a20 20 0 0 0 40 0" stroke="#FACC15"/>
+                                <path d="M60 76v10"/>
+                                <path d="M92 50c8 0 12 6 12 14M90 42c12 1 18 9 18 22" stroke="#E31C25" opacity="0.7"/>
+                            </svg>
+                        </div>
+                        <h3>Sensores</h3>
+                        <p>Movimiento, apertura y humo con tecnología anti-falsas-alarmas e inmunidad a mascotas.</p>
+                        <ul class="equip-specs mono"><li>PIR DUAL</li><li>PET-IMMUNE</li><li>TAMPER</li></ul>
+                    </article>
+
+                    <article class="equip-card reveal d3">
+                        <div class="equip-art" data-pscroll="0.05">
+                            <svg viewBox="0 0 120 110" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <rect x="36" y="18" width="48" height="74" rx="9"/>
+                                <circle cx="60" cy="50" r="18" fill="rgba(227,28,37,0.10)"/>
+                                <path d="M52 50a8 8 0 0 1 16 0v7" stroke="#FACC15"/>
+                                <path d="M56 50a4 4 0 0 1 8 0v9" stroke="#FACC15"/>
+                                <path d="M60 50v11" stroke="#FACC15"/>
+                                <rect x="49" y="76" width="22" height="4" rx="2"/>
+                            </svg>
+                        </div>
+                        <h3>Biométricos</h3>
+                        <p>Huella, tarjeta o código para controlar accesos con historial de cada entrada y salida.</p>
+                        <ul class="equip-specs mono"><li>HUELLA</li><li>RFID</li><li>LOG</li></ul>
+                    </article>
+                </div>
+
+                <!-- Hueco para foto real de las instalaciones -->
+                <div class="photo-slot reveal" role="img" aria-label="Espacio reservado para una foto de las instalaciones de Central Automatizada de Alarmas">
+                    <span class="ps-rec mono"><i></i>REC</span>
+                    <span class="ps-time mono">CAA · CCTV 01</span>
+                    <span class="ps-corner tl"></span><span class="ps-corner tr"></span>
+                    <span class="ps-corner bl"></span><span class="ps-corner br"></span>
+                    <span class="photo-slot-label mono"><b>TUS INSTALACIONES REALES</b>Mándanos fotos de tu central, equipo y montajes — las integramos aquí</span>
                 </div>
             </div>
         </section>
@@ -292,6 +423,73 @@
             </div>
         </section>
 
+        <!-- ═══ Preguntas frecuentes ═══ -->
+        <section id="faq" class="faq">
+            <div class="container">
+                <header class="section-head reveal">
+                    <p class="kicker mono">// PREGUNTAS FRECUENTES</p>
+                    <h2 class="section-title char-title"><span class="t-line">LO QUE TODOS</span><span class="t-line">NOS PREGUNTAN.</span></h2>
+                </header>
+
+                <div class="faq-list reveal">
+                    <div class="faq-item">
+                        <button class="faq-q" aria-expanded="false" aria-controls="faqa-1" id="faqq-1">
+                            <span>¿Cuánto cuesta el monitoreo?</span>
+                            <span class="faq-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="faq-a" id="faqa-1" role="region" aria-labelledby="faqq-1">
+                            <div class="faq-a-inner"><p>Depende del tamaño de tu propiedad y los equipos que necesites. La <strong>cotización es gratuita</strong>: te visitamos, evaluamos y te damos un precio claro, sin compromiso.</p></div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" aria-expanded="false" aria-controls="faqa-2" id="faqq-2">
+                            <span>¿Qué tan rápido responden ante una alarma?</span>
+                            <span class="faq-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="faq-a" id="faqa-2" role="region" aria-labelledby="faqq-2">
+                            <div class="faq-a-inner"><p>Nuestra central recibe la señal en <strong>segundos</strong>. Un operador real verifica el evento de inmediato y coordina contigo y con las autoridades. Nada de robots ni esperas.</p></div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" aria-expanded="false" aria-controls="faqa-3" id="faqq-3">
+                            <span>¿Atienden fuera de Cuauhtémoc?</span>
+                            <span class="faq-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="faq-a" id="faqa-3" role="region" aria-labelledby="faqq-3">
+                            <div class="faq-a-inner"><p>Sí. Damos cobertura en <strong>Cuauhtémoc y la región</strong>. Llámanos y confirmamos tu zona al momento.</p></div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" aria-expanded="false" aria-controls="faqa-4" id="faqq-4">
+                            <span>¿Necesito internet para que funcione?</span>
+                            <span class="faq-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="faq-a" id="faqa-4" role="region" aria-labelledby="faqq-4">
+                            <div class="faq-a-inner"><p>No es indispensable. Nuestros sistemas usan <strong>respaldo celular</strong> para seguir reportando a la central aunque se caiga la luz o el internet.</p></div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" aria-expanded="false" aria-controls="faqa-5" id="faqq-5">
+                            <span>¿Puedo ver mis cámaras desde el celular?</span>
+                            <span class="faq-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="faq-a" id="faqa-5" role="region" aria-labelledby="faqq-5">
+                            <div class="faq-a-inner"><p>Sí. Con la app ves tus <strong>cámaras en vivo</strong> y las grabaciones desde donde estés, en tiempo real.</p></div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" aria-expanded="false" aria-controls="faqa-6" id="faqq-6">
+                            <span>¿Hay contrato forzoso?</span>
+                            <span class="faq-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="faq-a" id="faqa-6" role="region" aria-labelledby="faqq-6">
+                            <div class="faq-a-inner"><p>Te explicamos las opciones con transparencia, sin letras chiquitas. Contratas el servicio que <strong>realmente necesitas</strong>.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- ═══ CTA final / Contacto ═══ -->
         <section id="contacto" class="contact">
             <div class="container">
@@ -344,6 +542,6 @@
         </svg>
     </a>
 
-    <script src="script.js?v=2"></script>
+    <script src="script.js?v=4"></script>
 </body>
 </html>
