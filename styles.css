@@ -41,9 +41,13 @@
 html {
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
 }
 
 body {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
     background: var(--bg);
     color: var(--text);
     font-family: var(--font-body);
@@ -1185,27 +1189,20 @@ main > section {
 }
 
 .card-icon {
-    width: 52px;
-    height: 52px;
+    width: 74px;
+    height: 74px;
     display: grid;
     place-items: center;
-    color: var(--red);
-    border: 1px solid var(--line-strong);
-    background: rgba(227, 28, 37, 0.06);
-    clip-path: polygon(0 0, calc(100% - 9px) 0, 100% 9px, 100% 100%, 9px 100%, 0 calc(100% - 9px));
-    transition: color 0.4s var(--ease-out), border-color 0.4s, background 0.4s, transform 0.5s var(--ease-spring);
+    filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.45));
+    transition: transform 0.5s var(--ease-spring);
 }
 
-.card-icon svg { width: 28px; height: 28px; }
+.card-icon svg { width: 66px; height: 66px; overflow: visible; }
 
-.card-top .card-num { margin-bottom: 0; }
+.card-top { align-items: flex-start; }
+.card-top .card-num { margin-bottom: 0; margin-top: 6px; }
 
-.service-card:hover .card-icon {
-    color: var(--yellow);
-    border-color: rgba(250, 204, 21, 0.45);
-    background: rgba(250, 204, 21, 0.08);
-    transform: translateY(-3px) rotate(-3deg);
-}
+.service-card:hover .card-icon { transform: translateY(-4px) scale(1.07); }
 
 /* ═══ Equipos / Tecnología ═══ */
 
@@ -1656,6 +1653,13 @@ main > section {
     .stats-grid { grid-template-columns: 1fr; }
     .btn { width: 100%; justify-content: center; }
     .phone-giant { padding: 16px 24px; }
+
+    /* Títulos que no se desborden en pantallas chicas */
+    .hero-title { font-size: clamp(2.7rem, 12vw, 3.3rem); }
+    .section-title { font-size: clamp(1.9rem, 8vw, 2.3rem); }
+    .contact-title { font-size: clamp(2.8rem, 14vw, 3.4rem); }
+    .app-title { font-size: clamp(1.7rem, 7.5vw, 2.1rem); }
+    .phone-giant { font-size: clamp(1.5rem, 7vw, 2rem); word-break: break-word; }
 }
 
 /* ═══ Accesibilidad ═══ */
