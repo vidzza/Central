@@ -1075,6 +1075,19 @@ main > section {
     box-shadow: 0 16px 50px rgba(250, 204, 21, 0.14);
 }
 
+.phone-alt {
+    margin: -10px 0 30px;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+}
+.phone-alt a {
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line-strong);
+    transition: color 0.25s, border-color 0.25s;
+}
+.phone-alt a:hover { color: var(--yellow); border-color: var(--yellow); }
+
 .contact-cta {
     display: flex;
     flex-direction: column;
