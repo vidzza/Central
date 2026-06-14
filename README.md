@@ -1,6 +1,6 @@
 # Central Automatizada de Alarmas
 
-Landing page para Central Automatizada de Alarmas, empresa de seguridad y monitoreo 24/7 en Cuauhtémoc, Chihuahua. Operando desde julio de 2010.
+Landing page para Central Automatizada de Alarmas, empresa de seguridad y monitoreo 24/7 en Cuauhtémoc, Chihuahua, con más de 25 años de experiencia.
 
 ---
 
