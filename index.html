@@ -33,7 +33,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders:opsz,wght@10..72,500..800&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="styles.css?v=5">
+    <link rel="stylesheet" href="styles.css?v=7">
 
     <!-- LocalBusiness Schema -->
     <script type="application/ld+json">
@@ -287,14 +287,38 @@
                 <div class="equip-grid">
                     <article class="equip-card reveal">
                         <div class="equip-art" data-pscroll="0.05">
-                            <svg viewBox="0 0 120 110" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <rect x="18" y="36" width="64" height="30" rx="15"/>
-                                <path d="M32 36v30M42 36v30" opacity="0.45"/>
-                                <circle cx="80" cy="51" r="13" fill="rgba(227,28,37,0.14)"/>
-                                <circle cx="80" cy="51" r="6.5" stroke="#E31C25"/>
-                                <path d="M28 66v12M21 78h14"/>
-                                <path d="M94 38c6 4 6 22 0 26" stroke="#FACC15" opacity="0.85"/>
-                                <path d="M100 32c9 7 9 31 0 38" stroke="#FACC15" opacity="0.45"/>
+                            <svg class="equip-render" viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <defs>
+                                    <linearGradient id="camBody" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0" stop-color="#a6abb8"/><stop offset="0.16" stop-color="#6b7280"/><stop offset="0.52" stop-color="#2f343d"/><stop offset="1" stop-color="#13151a"/>
+                                    </linearGradient>
+                                    <linearGradient id="camHood" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0" stop-color="#b9bec9"/><stop offset="1" stop-color="#3a3f48"/>
+                                    </linearGradient>
+                                    <linearGradient id="camMount" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0" stop-color="#959ba8"/><stop offset="1" stop-color="#2b2f37"/>
+                                    </linearGradient>
+                                    <radialGradient id="camLens" cx="0.4" cy="0.34" r="0.75">
+                                        <stop offset="0" stop-color="#14333f"/><stop offset="0.45" stop-color="#0a1a22"/><stop offset="0.8" stop-color="#04080b"/><stop offset="0.93" stop-color="#1d3a44"/><stop offset="1" stop-color="#070b0e"/>
+                                    </radialGradient>
+                                    <filter id="camSh" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="4.5"/></filter>
+                                </defs>
+                                <ellipse cx="108" cy="138" rx="72" ry="9" fill="#000" opacity="0.5" filter="url(#camSh)"/>
+                                <ellipse cx="120" cy="116" rx="58" ry="8" fill="#E31C25" opacity="0.13" filter="url(#camSh)"/>
+                                <rect x="34" y="18" width="42" height="9" rx="3.5" fill="url(#camMount)"/>
+                                <circle cx="42" cy="22.5" r="1.4" fill="#0c0d10"/><circle cx="68" cy="22.5" r="1.4" fill="#0c0d10"/>
+                                <path d="M52 27 C 52 52, 60 62, 80 70" stroke="url(#camMount)" stroke-width="9" stroke-linecap="round"/>
+                                <path d="M50 30 C 51 50, 57 60, 74 68" stroke="#cdd2db" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+                                <rect x="62" y="58" width="120" height="50" rx="25" fill="url(#camBody)"/>
+                                <rect x="76" y="52" width="106" height="20" rx="10" fill="url(#camHood)"/>
+                                <rect x="74" y="62" width="80" height="5" rx="2.5" fill="#ffffff" opacity="0.22"/>
+                                <ellipse cx="174" cy="83" rx="13.5" ry="26" fill="#0e0f13"/>
+                                <ellipse cx="174" cy="83" rx="13.5" ry="26" fill="none" stroke="#646a76" stroke-width="2"/>
+                                <ellipse cx="175" cy="83" rx="9" ry="19.5" fill="url(#camLens)"/>
+                                <path d="M169 71 q-3.5 12 0.5 24" stroke="#ffffff" stroke-width="2.6" opacity="0.5" stroke-linecap="round"/>
+                                <circle cx="170" cy="75" r="1.7" fill="#fff" opacity="0.75"/>
+                                <circle cx="178" cy="91" r="2" fill="#8fe0ff" opacity="0.85"/>
+                                <circle cx="82" cy="82" r="2.2" fill="#34D399"/><circle cx="82" cy="82" r="4.5" fill="#34D399" opacity="0.25"/>
                             </svg>
                         </div>
                         <h3>Cámaras 4K</h3>
@@ -304,13 +328,33 @@
 
                     <article class="equip-card reveal d1">
                         <div class="equip-art" data-pscroll="0.05">
-                            <svg viewBox="0 0 120 110" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <rect x="30" y="14" width="60" height="82" rx="9"/>
-                                <rect x="40" y="24" width="40" height="26" rx="3" fill="rgba(250,204,21,0.12)"/>
-                                <path d="M46 33h22M46 41h14" stroke="#FACC15"/>
-                                <circle cx="46" cy="64" r="3.2"/><circle cx="60" cy="64" r="3.2"/><circle cx="74" cy="64" r="3.2"/>
-                                <circle cx="46" cy="80" r="3.2"/><circle cx="60" cy="80" r="3.2"/><circle cx="74" cy="80" r="3.2"/>
-                                <circle cx="80" cy="20" r="2.4" fill="#34D399" stroke="none"/>
+                            <svg class="equip-render" viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <defs>
+                                    <linearGradient id="panBody" x1="0" y1="0" x2="0.4" y2="1">
+                                        <stop offset="0" stop-color="#3a3f48"/><stop offset="0.5" stop-color="#202329"/><stop offset="1" stop-color="#101216"/>
+                                    </linearGradient>
+                                    <linearGradient id="panScreen" x1="0" y1="0" x2="0.6" y2="1">
+                                        <stop offset="0" stop-color="#0f2233"/><stop offset="1" stop-color="#070d15"/>
+                                    </linearGradient>
+                                    <linearGradient id="panSheen" x1="0" y1="0" x2="1" y2="1">
+                                        <stop offset="0" stop-color="#ffffff" stop-opacity="0.10"/><stop offset="0.5" stop-color="#ffffff" stop-opacity="0"/>
+                                    </linearGradient>
+                                    <filter id="panSh" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="5"/></filter>
+                                </defs>
+                                <ellipse cx="100" cy="146" rx="56" ry="8" fill="#000" opacity="0.5" filter="url(#panSh)"/>
+                                <rect x="52" y="16" width="96" height="128" rx="16" fill="url(#panBody)"/>
+                                <rect x="52.6" y="16.6" width="94.8" height="126.8" rx="15.4" fill="none" stroke="#5a606c" stroke-width="1.2" opacity="0.6"/>
+                                <rect x="62" y="28" width="76" height="104" rx="9" fill="url(#panScreen)"/>
+                                <path d="M62 36 L138 28 V40 L62 64 Z" fill="url(#panSheen)"/>
+                                <rect x="74" y="35" width="52" height="9" rx="4.5" fill="#16222e"/>
+                                <circle cx="80" cy="39.5" r="2.2" fill="#34D399"/>
+                                <rect x="86" y="37" width="34" height="4" rx="2" fill="#2c4456"/>
+                                <circle cx="100" cy="80" r="23" fill="none" stroke="#1d2f3c" stroke-width="5"/>
+                                <path d="M100 57 a23 23 0 0 1 20 33" fill="none" stroke="#34D399" stroke-width="5" stroke-linecap="round"/>
+                                <path d="M100 70 l-9 4 v8 c0 6 5 10 9 11 4-1 9-5 9-11 v-8 z" fill="#34D399" opacity="0.18"/>
+                                <path d="M100 71 l-7.5 3.3 v6.7 c0 5 4 8.5 7.5 9.4 3.5-0.9 7.5-4.4 7.5-9.4 v-6.7 z" fill="none" stroke="#34D399" stroke-width="1.6"/>
+                                <rect x="74" y="112" width="52" height="6" rx="3" fill="#16222e"/>
+                                <rect x="74" y="121" width="38" height="6" rx="3" fill="#13202b"/>
                             </svg>
                         </div>
                         <h3>Panel Táctil</h3>
@@ -320,11 +364,28 @@
 
                     <article class="equip-card reveal d2">
                         <div class="equip-art" data-pscroll="0.05">
-                            <svg viewBox="0 0 120 110" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <path d="M44 22h32a4 4 0 0 1 4 4v30a20 20 0 0 1-40 0V26a4 4 0 0 1 4-4z"/>
-                                <path d="M40 50a20 20 0 0 0 40 0" stroke="#FACC15"/>
-                                <path d="M60 76v10"/>
-                                <path d="M92 50c8 0 12 6 12 14M90 42c12 1 18 9 18 22" stroke="#E31C25" opacity="0.7"/>
+                            <svg class="equip-render" viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <defs>
+                                    <linearGradient id="senBody" x1="0.2" y1="0" x2="0.7" y2="1">
+                                        <stop offset="0" stop-color="#f4f5f8"/><stop offset="0.5" stop-color="#d2d4db"/><stop offset="1" stop-color="#9a9da6"/>
+                                    </linearGradient>
+                                    <linearGradient id="senLens" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0" stop-color="#454a54"/><stop offset="1" stop-color="#181b21"/>
+                                    </linearGradient>
+                                    <filter id="senSh" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="4.5"/></filter>
+                                </defs>
+                                <ellipse cx="86" cy="140" rx="52" ry="8" fill="#000" opacity="0.5" filter="url(#senSh)"/>
+                                <path d="M58 36 h56 a12 12 0 0 1 12 12 v18 a40 40 0 0 1 -80 0 V48 a12 12 0 0 1 12 -12 Z" fill="url(#senBody)"/>
+                                <path d="M58 37 h56 a11 11 0 0 1 11 11 v3 H47 v-3 a11 11 0 0 1 11 -11 Z" fill="#ffffff" opacity="0.45"/>
+                                <path d="M48 64 a38 38 0 0 0 76 0 q0 -6 -6 -6 H54 q-6 0 -6 6 Z" fill="url(#senLens)"/>
+                                <path d="M50 70 a36 34 0 0 0 72 0" stroke="#000" stroke-width="1" opacity="0.4"/>
+                                <path d="M53 78 a34 30 0 0 0 66 0" stroke="#000" stroke-width="1" opacity="0.4"/>
+                                <path d="M58 86 a30 24 0 0 0 56 0" stroke="#000" stroke-width="1" opacity="0.4"/>
+                                <ellipse cx="74" cy="62" rx="14" ry="9" fill="#ffffff" opacity="0.18"/>
+                                <circle cx="86" cy="50" r="2.4" fill="#E31C25"/><circle cx="86" cy="50" r="5" fill="#E31C25" opacity="0.25"/>
+                                <path d="M134 60 a30 30 0 0 1 0 44" stroke="#FACC15" stroke-width="2.6" opacity="0.85" stroke-linecap="round"/>
+                                <path d="M144 50 a44 44 0 0 1 0 64" stroke="#FACC15" stroke-width="2.4" opacity="0.5" stroke-linecap="round"/>
+                                <path d="M154 40 a58 58 0 0 1 0 84" stroke="#FACC15" stroke-width="2.2" opacity="0.25" stroke-linecap="round"/>
                             </svg>
                         </div>
                         <h3>Sensores</h3>
@@ -334,13 +395,35 @@
 
                     <article class="equip-card reveal d3">
                         <div class="equip-art" data-pscroll="0.05">
-                            <svg viewBox="0 0 120 110" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <rect x="36" y="18" width="48" height="74" rx="9"/>
-                                <circle cx="60" cy="50" r="18" fill="rgba(227,28,37,0.10)"/>
-                                <path d="M52 50a8 8 0 0 1 16 0v7" stroke="#FACC15"/>
-                                <path d="M56 50a4 4 0 0 1 8 0v9" stroke="#FACC15"/>
-                                <path d="M60 50v11" stroke="#FACC15"/>
-                                <rect x="49" y="76" width="22" height="4" rx="2"/>
+                            <svg class="equip-render" viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <defs>
+                                    <linearGradient id="bioBody" x1="0" y1="0" x2="0.5" y2="1">
+                                        <stop offset="0" stop-color="#3a3f48"/><stop offset="0.5" stop-color="#1f2229"/><stop offset="1" stop-color="#101216"/>
+                                    </linearGradient>
+                                    <radialGradient id="bioScan" cx="0.5" cy="0.5" r="0.5">
+                                        <stop offset="0" stop-color="#FACC15" stop-opacity="0.35"/><stop offset="0.6" stop-color="#E31C25" stop-opacity="0.18"/><stop offset="1" stop-color="#E31C25" stop-opacity="0"/>
+                                    </radialGradient>
+                                    <filter id="bioSh" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="5"/></filter>
+                                    <clipPath id="bioClip"><circle cx="100" cy="68" r="25"/></clipPath>
+                                </defs>
+                                <ellipse cx="100" cy="146" rx="48" ry="8" fill="#000" opacity="0.5" filter="url(#bioSh)"/>
+                                <rect x="66" y="14" width="68" height="132" rx="15" fill="url(#bioBody)"/>
+                                <rect x="66.6" y="14.6" width="66.8" height="130.8" rx="14.4" fill="none" stroke="#5a606c" stroke-width="1.2" opacity="0.55"/>
+                                <circle cx="100" cy="68" r="27" fill="url(#bioScan)"/>
+                                <circle cx="100" cy="68" r="25" fill="#0d0f13"/>
+                                <circle cx="100" cy="68" r="25" fill="none" stroke="#3a3f48" stroke-width="1.4"/>
+                                <g stroke="#FACC15" stroke-width="1.7" fill="none" stroke-linecap="round" opacity="0.95">
+                                    <path d="M88 68 a12 12 0 0 1 24 0 v6"/>
+                                    <path d="M92.5 68 a7.5 7.5 0 0 1 15 0 v9"/>
+                                    <path d="M97 68 a3 3 0 0 1 6 0 v11"/>
+                                    <path d="M100 64 v18"/>
+                                    <path d="M83.5 72 q0.5 7 3 13"/>
+                                    <path d="M116.5 72 q-0.5 7 -3 13"/>
+                                </g>
+                                <rect class="bio-scanline" x="75" y="66" width="50" height="2.4" rx="1.2" fill="#fff" opacity="0.55" clip-path="url(#bioClip)"/>
+                                <rect x="84" y="108" width="32" height="7" rx="3.5" fill="#1b1e25"/>
+                                <circle cx="92" cy="126" r="2" fill="#34D399"/>
+                                <rect x="99" y="124" width="20" height="4" rx="2" fill="#22262e"/>
                             </svg>
                         </div>
                         <h3>Biométricos</h3>
@@ -349,73 +432,66 @@
                     </article>
                 </div>
 
-                <!-- Muro de monitoreo en vivo (vectorial) -->
-                <div class="cctv-wall reveal" aria-hidden="true">
-                    <div class="cctv-bar">
-                        <span class="mono cctv-title">CAA · MURO DE MONITOREO EN VIVO</span>
-                        <span class="cctv-status mono"><i></i>4 CÁMARAS EN LÍNEA</span>
+                <!-- Showcase: la app en tu celular -->
+                <div class="app-showcase reveal">
+                    <div class="app-copy">
+                        <p class="kicker mono">// EN TU BOLSILLO</p>
+                        <h3 class="app-title">TU CASA, EN <mark>LA PALMA</mark> DE TU MANO.</h3>
+                        <p class="app-lead">Arma y desarma, recibe alertas al instante y mira tus cámaras en vivo — desde donde estés, en tiempo real.</p>
+                        <ul class="app-feats">
+                            <li>
+                                <span class="af-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="13" height="6" rx="2"/><circle cx="6.5" cy="10" r="1.5"/><path d="M16 8.5l4-1.5v6l-4-1.5"/><path d="M4 4v3"/></svg></span>
+                                Cámaras en vivo, 24/7
+                            </li>
+                            <li>
+                                <span class="af-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6z"/><path d="M10 19a2 2 0 0 0 4 0"/></svg></span>
+                                Notificaciones al instante
+                            </li>
+                            <li>
+                                <span class="af-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 8 8 11 4.5-3 8-6 8-11V5l-8-3z"/><path d="M9 12l2 2 4-4"/></svg></span>
+                                Arma y desarma por zonas
+                            </li>
+                        </ul>
+                        <a href="tel:+526255813313" class="btn btn-primary">Quiero la app</a>
                     </div>
-                    <div class="cctv-grid">
-                        <!-- CAM 01 · ACCESO -->
-                        <div class="cam">
-                            <svg class="cam-scene" viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice" fill="none" stroke-width="1.2">
-                                <path d="M0 60 H60 M100 60 H160" stroke="#44444c"/>
-                                <path d="M0 79 H160" stroke="#3a3a42"/>
-                                <path d="M64 100 74 79 86 79 96 100" stroke="#303038"/>
-                                <rect x="60" y="52" width="40" height="27" stroke="#54545e"/>
-                                <path d="M60 52 V44 H100 V52" stroke="#54545e"/>
-                                <path d="M67 52V79M74 52V79M81 52V79M88 52V79M95 52V79" stroke="#3d3d45"/>
-                                <path d="M122 79 V40" stroke="#44444c"/><circle cx="122" cy="38" r="3" fill="#FACC15" fill-opacity="0.45" stroke="none"/>
-                            </svg>
-                            <span class="cam-scan"></span>
-                            <span class="cam-rec mono"><i></i>REC</span>
-                            <span class="cam-meta mono"><span class="cam-id">CAM 01 · ACCESO</span><span class="cam-time">--:--:--</span></span>
+
+                    <div class="app-stage" aria-hidden="true">
+                        <div class="phone">
+                            <span class="phone-island"></span>
+                            <div class="phone-screen">
+                                <div class="app-statusbar mono"><span>9:41</span><span class="app-sb-r"><i class="sb-net"></i><i class="sb-bat"></i></span></div>
+                                <div class="app-head">
+                                    <div class="app-head-t">
+                                        <span class="app-greet">Mi Propiedad</span>
+                                        <span class="app-sub mono">CUAUHTÉMOC · EN LÍNEA</span>
+                                    </div>
+                                    <span class="app-bell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6z"/><path d="M10 19a2 2 0 0 0 4 0"/></svg></span>
+                                </div>
+                                <div class="app-status-card">
+                                    <span class="asc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 8 8 11 4.5-3 8-6 8-11V5l-8-3z"/><path d="M9 12l2 2 4-4"/></svg></span>
+                                    <div>
+                                        <span class="asc-title">SISTEMA ARMADO</span>
+                                        <span class="asc-sub mono">Todo en orden · 4 zonas activas</span>
+                                    </div>
+                                </div>
+                                <div class="app-cams">
+                                    <div class="app-cam"><span class="ac-dot"></span><span class="ac-lbl mono">ACCESO</span></div>
+                                    <div class="app-cam"><span class="ac-dot"></span><span class="ac-lbl mono">PATIO</span></div>
+                                    <div class="app-cam"><span class="ac-dot"></span><span class="ac-lbl mono">PERÍMETRO</span></div>
+                                    <div class="app-cam"><span class="ac-dot"></span><span class="ac-lbl mono">BODEGA</span></div>
+                                </div>
+                                <div class="app-noti">
+                                    <span class="an-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></span>
+                                    <div class="an-txt">
+                                        <span class="an-t">Movimiento detectado</span>
+                                        <span class="an-s mono">Zona 2 · Perímetro · hace 2 min</span>
+                                    </div>
+                                </div>
+                                <div class="app-tabs">
+                                    <span class="app-tab active"></span><span class="app-tab"></span><span class="app-tab"></span><span class="app-tab"></span>
+                                </div>
+                            </div>
                         </div>
-                        <!-- CAM 02 · PERÍMETRO (con detección) -->
-                        <div class="cam">
-                            <svg class="cam-scene" viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice" fill="none" stroke-width="1.2">
-                                <path d="M0 83 H160" stroke="#3a3a42"/>
-                                <path d="M10 83V40M40 83V46M70 83V52M100 83V56M130 83V60M154 83V63" stroke="#4c4c54"/>
-                                <path d="M10 48 154 64M10 60 154 70M10 73 154 78" stroke="#3d3d45"/>
-                                <path d="M138 16 133 30 139 30 133 42" stroke="#FACC15" stroke-opacity="0.55"/>
-                            </svg>
-                            <span class="cam-scan"></span>
-                            <span class="cam-motion"></span>
-                            <span class="cam-rec mono"><i></i>REC</span>
-                            <span class="cam-meta mono"><span class="cam-id">CAM 02 · PERÍMETRO</span><span class="cam-time">--:--:--</span></span>
-                        </div>
-                        <!-- CAM 03 · ESTACIONAMIENTO -->
-                        <div class="cam">
-                            <svg class="cam-scene" viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice" fill="none" stroke-width="1.2">
-                                <path d="M0 85 H160" stroke="#3a3a42"/>
-                                <path d="M18 100 46 64M58 100 70 64M104 100 92 64M142 100 116 64" stroke="#303038"/>
-                                <path d="M44 80 H118" stroke="#303038"/>
-                                <path d="M50 73 h20 l4 5 v6 h-28 v-6z" fill="#2b2b32" stroke="#4c4c54"/>
-                                <path d="M86 71 h17 l4 5 v6 h-25 v-6z" fill="#2b2b32" stroke="#4c4c54"/>
-                            </svg>
-                            <span class="cam-scan"></span>
-                            <span class="cam-rec mono"><i></i>REC</span>
-                            <span class="cam-meta mono"><span class="cam-id">CAM 03 · ESTACIONAMIENTO</span><span class="cam-time">--:--:--</span></span>
-                        </div>
-                        <!-- CAM 04 · PATIO -->
-                        <div class="cam">
-                            <svg class="cam-scene" viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice" fill="none" stroke-width="1.2">
-                                <path d="M0 85 H160" stroke="#3a3a42"/>
-                                <path d="M34 85 V46 H112 V85" stroke="#4c4c54"/>
-                                <path d="M30 46 73 30 116 46" stroke="#4c4c54"/>
-                                <rect x="48" y="58" width="15" height="15" stroke="#3d3d45"/>
-                                <rect x="82" y="58" width="15" height="27" stroke="#3d3d45"/>
-                                <circle cx="124" cy="40" r="2.6" fill="#34D399" fill-opacity="0.5" stroke="none"/>
-                            </svg>
-                            <span class="cam-scan"></span>
-                            <span class="cam-rec mono"><i></i>REC</span>
-                            <span class="cam-meta mono"><span class="cam-id">CAM 04 · PATIO</span><span class="cam-time">--:--:--</span></span>
-                        </div>
-                    </div>
-                    <div class="cctv-foot mono">
-                        <span>GRABANDO · 24/7</span>
-                        <span class="cam-time">--:--:--</span>
-                        <span class="cctv-ok">ALMACENAMIENTO OK</span>
                     </div>
                 </div>
             </div>
@@ -603,6 +679,6 @@
         </svg>
     </a>
 
-    <script src="script.js?v=5"></script>
+    <script src="script.js?v=7"></script>
 </body>
 </html>
