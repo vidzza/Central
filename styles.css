@@ -962,6 +962,20 @@ main > section {
     align-items: center;
 }
 
+.about-emblem {
+    display: block;
+    width: clamp(150px, 20vw, 210px);
+    height: auto;
+    margin: 0 0 28px;
+    border-radius: 18px;
+    -webkit-mask: radial-gradient(circle at 50% 50%, #000 76%, transparent 97%);
+    mask: radial-gradient(circle at 50% 50%, #000 76%, transparent 97%);
+    filter: drop-shadow(0 10px 34px rgba(227, 28, 37, 0.30));
+    transition: transform 0.5s var(--ease-spring);
+}
+
+.about-content:hover .about-emblem { transform: scale(1.03) rotate(-1deg); }
+
 .about-text {
     color: var(--text-dim);
     font-size: 1.12rem;
