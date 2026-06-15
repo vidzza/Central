@@ -194,31 +194,47 @@
                     </ul>
                 </div>
 
-                <!-- Panel de monitoreo en vivo -->
-                <div class="hero-panel reveal d4" aria-hidden="true">
-                    <div class="panel-header">
-                        <span class="mono panel-title">CAA · CENTRAL EN VIVO</span>
-                        <span class="rec mono"><i></i>REC</span>
-                    </div>
-                    <div class="panel-body">
-                        <div class="zones mono">
-                            <span class="zone">Z1 · PERÍMETRO</span>
-                            <span class="zone">Z2 · ACCESOS</span>
-                            <span class="zone">Z3 · INTERIOR</span>
-                            <span class="zone">Z4 · CÁMARAS</span>
-                        </div>
-                        <div class="pulse-wrap">
-                            <svg class="pulse" viewBox="0 0 400 60" preserveAspectRatio="none">
-                                <path class="pulse-base" pathLength="600" d="M0 30 H58 L70 30 80 12 90 48 100 30 H156 L170 30 180 8 191 52 201 30 H256 L270 30 280 14 290 46 300 30 H400"/>
-                                <path class="pulse-line" pathLength="600" d="M0 30 H58 L70 30 80 12 90 48 100 30 H156 L170 30 180 8 191 52 201 30 H256 L270 30 280 14 290 46 300 30 H400"/>
-                            </svg>
-                        </div>
-                        <div class="event-log mono" id="eventLog"></div>
-                    </div>
-                    <div class="panel-footer mono">
-                        <span>SEÑAL <i class="bars"><b></b><b></b><b></b><b></b></i></span>
-                        <span id="panelClock">--:--:--</span>
-                        <span class="ok">SISTEMA OK</span>
+                <!-- Emblema energizado — núcleo eléctrico flotante -->
+                <div class="hero-panel emblem-stage reveal d4" aria-hidden="true">
+                    <div class="emblem-core">
+                        <span class="emblem-aura"></span>
+                        <span class="emblem-glow"></span>
+
+                        <svg class="rings" viewBox="0 0 400 400" fill="none" aria-hidden="true">
+                            <circle cx="200" cy="200" r="186"/>
+                            <circle cx="200" cy="200" r="150"/>
+                        </svg>
+
+                        <span class="halo"></span>
+                        <span class="halo halo-2"></span>
+
+                        <svg class="bolts" viewBox="0 0 400 400" fill="none" aria-hidden="true">
+                            <defs>
+                                <linearGradient id="boltG" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0" stop-color="#FFFDF2"/>
+                                    <stop offset="0.45" stop-color="#FFE27A"/>
+                                    <stop offset="1" stop-color="#F0901A"/>
+                                </linearGradient>
+                                <filter id="boltGlow" x="-80%" y="-80%" width="260%" height="260%">
+                                    <feGaussianBlur stdDeviation="3.4" result="b"/>
+                                    <feMerge>
+                                        <feMergeNode in="b"/>
+                                        <feMergeNode in="b"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
+                            </defs>
+                            <g filter="url(#boltGlow)" stroke="url(#boltG)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path class="bolt" d="M200 90 L213 66 L189 52 L210 30 L196 18 L204 6 M189 52 L173 44 L181 26"/>
+                                <path class="bolt" transform="rotate(60 200 200)"  d="M200 90 L213 66 L189 52 L210 30 L196 18 L204 6 M189 52 L173 44 L181 26"/>
+                                <path class="bolt" transform="rotate(120 200 200)" d="M200 90 L213 66 L189 52 L210 30 L196 18 L204 6 M189 52 L173 44 L181 26"/>
+                                <path class="bolt" transform="rotate(180 200 200)" d="M200 90 L213 66 L189 52 L210 30 L196 18 L204 6 M189 52 L173 44 L181 26"/>
+                                <path class="bolt" transform="rotate(240 200 200)" d="M200 90 L213 66 L189 52 L210 30 L196 18 L204 6 M189 52 L173 44 L181 26"/>
+                                <path class="bolt" transform="rotate(300 200 200)" d="M200 90 L213 66 L189 52 L210 30 L196 18 L204 6 M189 52 L173 44 L181 26"/>
+                            </g>
+                        </svg>
+
+                        <img src="logo_emblem.jpg" class="emblem-logo" alt="" width="300" height="297" decoding="async">
                     </div>
                 </div>
             </div>
