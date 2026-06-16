@@ -12,6 +12,10 @@
     --yellow: #FACC15;
     --yellow-soft: rgba(250, 204, 21, 0.75);
     --green: #34D399;
+    --wa: #25D366;
+    --wa-bright: #2ee87a;
+    --wa-deep: #128C7E;
+    --wa-glow: rgba(37, 211, 102, 0.35);
 
     --bg: #08080a;
     --bg-raise: #0f0f13;
@@ -209,7 +213,21 @@ main > section {
 
 .btn-primary:hover::after { left: 130%; }
 
-.btn:active, .call-fab:active { transform: scale(0.96); }
+.btn:active, .fab:active { transform: scale(0.96); }
+
+.btn-whatsapp {
+    border: 1px solid rgba(37, 211, 102, 0.45);
+    color: var(--wa-bright);
+    background: rgba(37, 211, 102, 0.08);
+}
+
+.btn-whatsapp:hover {
+    border-color: var(--wa);
+    color: #fff;
+    background: var(--wa);
+    transform: translateY(-3px);
+    box-shadow: 0 14px 40px var(--wa-glow);
+}
 
 .btn-ghost {
     border-color: var(--line-strong);
@@ -1303,43 +1321,67 @@ main > section {
     color: var(--text-dim);
 }
 
-/* ═══ Llamada flotante ═══ */
+/* ═══ Acciones flotantes (WhatsApp + llamada) ═══ */
 
-.call-fab {
+.fab-stack {
     position: fixed;
     right: 22px;
     bottom: 22px;
     z-index: 1500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+.fab {
+    position: relative;
     width: 58px;
     height: 58px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--red);
     color: #fff;
     border-radius: 50%;
-    box-shadow: 0 10px 30px var(--red-glow);
     opacity: 0;
     transform: translateY(16px);
     pointer-events: none;
     transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-spring);
 }
 
-.call-fab.show {
+.fab-stack.show .fab {
     opacity: 1;
     transform: none;
     pointer-events: auto;
 }
 
-.call-fab.show:hover { transform: scale(1.1); }
+/* La pila aparece de abajo hacia arriba */
+.fab-stack.show .wa-fab { transition-delay: 0.07s; }
 
-.call-fab::after {
+.fab-stack.show .fab:hover { transform: scale(1.1); }
+
+.call-fab {
+    background: var(--red);
+    box-shadow: 0 10px 30px var(--red-glow);
+}
+
+.wa-fab {
+    background: var(--wa);
+    box-shadow: 0 10px 30px var(--wa-glow);
+}
+
+.fab::after {
     content: "";
     position: absolute;
     inset: 0;
     border-radius: 50%;
     border: 2px solid rgba(227, 28, 37, 0.65);
     animation: fab-ring 2s ease-out infinite;
+}
+
+.wa-fab::after {
+    border-color: rgba(37, 211, 102, 0.65);
+    animation-delay: 1s;
 }
 
 @keyframes fab-ring {

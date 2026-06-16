@@ -151,11 +151,11 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(pushEvent, 2600);
     }
 
-    // ── Botón de llamada flotante ──
-    const fab = document.querySelector('.call-fab');
-    if (fab) {
+    // ── Acciones flotantes (WhatsApp + llamada) ──
+    const fabStack = document.querySelector('.fab-stack');
+    if (fabStack) {
         const toggleFab = () => {
-            fab.classList.toggle('show', window.scrollY > window.innerHeight * 0.6);
+            fabStack.classList.toggle('show', window.scrollY > window.innerHeight * 0.6);
         };
         window.addEventListener('scroll', toggleFab, { passive: true });
         toggleFab();
@@ -263,8 +263,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ── Botones magnéticos (desktop) ──
     if (finePointer && !reduceMotion) {
-        document.querySelectorAll('.btn, .nav-phone, .call-fab').forEach(btn => {
-            const strength = btn.classList.contains('call-fab') ? 0.35 : 0.25;
+        document.querySelectorAll('.btn, .nav-phone, .fab').forEach(btn => {
+            const strength = btn.classList.contains('fab') ? 0.35 : 0.25;
             btn.addEventListener('mousemove', e => {
                 const r = btn.getBoundingClientRect();
                 const x = e.clientX - r.left - r.width / 2;
